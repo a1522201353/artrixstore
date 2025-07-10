@@ -6,9 +6,11 @@
 
     {% # Load and preload the critical CSS %}
     {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
-
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
+    {{ 'public.css' | asset_url | stylesheet_tag: preload: true }}
+    <script src="{{ 'public.js' | asset_url }}" defer></script>
+
 
     {{ content_for_header }}
   </head>
