@@ -5413,7 +5413,7 @@ img,video {
     right: 0;
     width: 0;
     height: 3px;
-    background-color: #f00000;
+    background-color: white;
     -webkit-transition: width .3s ease-out;
     transition: width .3s ease-out
 }
@@ -5687,9 +5687,9 @@ img,video {
 }
 
 @media screen and (any-hover: hover) {
-    .header:hover {
+    /* .header:hover {
         background-color:#fff
-    }
+    } */
 
     .header:hover::after {
         opacity: 1
@@ -5707,9 +5707,9 @@ img,video {
         color: #000
     }
 
-    .hm-link:hover {
+    /* .hm-link:hover {
         color: #f00000
-    }
+    } */
 
     .hms-link:hover {
         color: #f00000

@@ -11,7 +11,8 @@
     {{ 'public.css' | asset_url | stylesheet_tag: preload: true }}
     <script src="{{ 'public.js' | asset_url }}" defer></script>
 
-
+    {{ 'global-header.css' | asset_url | }}
+    {{ 'splide.min.css' | asset_url | }}
     {{ content_for_header }}
   </head>
 

@@ -1,0 +1,175 @@
+<responsive-video-banner>
+    <div class="index-banner">
+      <div class="splide js-splide-ib" role="group" aria-label="Banner" data-splide='{"type": "loop", "arrows": false, "pagination": false, "autoplay": true, "pauseOnHover": false, "interval": {{ section.settings.autoplay_speed | times: 1000 }}}'>
+        <div class="splide__track">
+          <ul class="splide__list">
+            {% for block in section.blocks %}
+              {% if block.type == 'slide' %}
+                <li class="splide__slide">
+                  <div class="ib-item">
+                    <div class="ib-item__img img-box">
+                      {% comment %} 视频处理 - 使用自定义属性 {% endcomment %}
+                      {% if block.settings.video_url != blank or block.settings.mobile_video_url != blank %}
+                        <video 
+                          class="ib-item__video absolute top-0 left-0 w-full h-full object-cover" 
+                          preload="auto" 
+                          x-webkit-airplay="true" 
+                          airplay="allow" 
+                          webkit-playsinline="true" 
+                          playsinline="true" 
+                          x5-video-player-fullscreen="true" 
+                          loop 
+                          muted 
+                          autoplay
+                          {% if block.settings.video_url != blank %}data-pc-src="{{ block.settings.video_url }}"{% endif %}
+                          {% if block.settings.mobile_video_url != blank %}data-phone-src="{{ block.settings.mobile_video_url }}"{% endif %}
+                          src="{{ block.settings.video_url }}">
+                        </video>
+                      {% else %}
+                        {% comment %} 图片处理 - 使用 picture 标签，不设置尺寸 {% endcomment %}
+                        <picture class="absolute top-0 left-0 w-full h-full">
+                          {% comment %} 手机端图片 {% endcomment %}
+                          {% if block.settings.mobile_image != blank %}
+                            <source 
+                              media="(max-width: 767px)" 
+                              srcset="{{ block.settings.mobile_image | img_url: 'master' }}">
+                          {% endif %}
+                          
+                          {% comment %} 桌面端图片 {% endcomment %}
+                          {% if block.settings.image != blank %}
+                            <source 
+                              media="(min-width: 768px)" 
+                              srcset="{{ block.settings.image | img_url: 'master' }}">
+                          {% endif %}
+                          
+                          {% comment %} 默认图片 {% endcomment %}
+                          <img 
+                            class="w-full h-full object-cover" 
+                            src="{{ block.settings.image | default: block.settings.mobile_image | img_url: 'master' }}" 
+                            alt="{{ block.settings.heading | escape }}">
+                        </picture>
+                      {% endif %}
+                    </div>
+                    <div class="ib-item__wrap absolute inset-0 flex items-center">
+                      <div class="w-full Banner_phone">
+                        <div class="wrap">
+                          <div class="max-w-1520 mx-auto">
+                            <div class="ib-item__desc inline-block">
+                              {% if block.settings.heading != blank %}
+                                <div class="text-68 font-700 leading-12 text-white" >{{ block.settings.heading }}</div>
+                              {% endif %}
+                              
+                              {% if block.settings.subheading != blank %}
+                                <div class="text-24 leading-125 font-700 mt-20 text-white" >{{ block.settings.subheading }}</div>
+                              {% endif %}
+                              
+                              {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+                                <a href="{{ block.settings.button_link }}" class="text-16 inline-block learn-more text-white mt-40 bg-red" >{{ block.settings.button_text }}</a>
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </responsive-video-banner>
+  <script src="{{ 'component-banner-splide.js' | asset_url }}" defer></script>
+
+  {% schema %}
+    {
+      "name": "自定义视频Banner",
+      "settings": [
+        {
+          "type": "range",
+          "id": "autoplay_speed",
+          "min": 3,
+          "max": 20,
+          "step": 1,
+          "unit": "秒",
+          "label": "自动播放间隔",
+          "default": 12
+        }
+      ],
+      "blocks": [
+        {
+          "type": "slide",
+          "name": "幻灯片",
+          "settings": [
+            {
+              "type": "header",
+              "content": "视频设置"
+            },
+            {
+              "type": "url",
+              "id": "video_url",
+              "label": "桌面端视频URL"
+            },
+            {
+              "type": "url",
+              "id": "mobile_video_url",
+              "label": "手机端视频URL"
+            },
+            {
+              "type": "header",
+              "content": "图片设置（没有视频时显示）"
+            },
+            {
+              "type": "image_picker",
+              "id": "image",
+              "label": "桌面端图片"
+            },
+            {
+              "type": "image_picker",
+              "id": "mobile_image",
+              "label": "手机端图片"
+            },
+            {
+              "type": "header",
+              "content": "内容设置"
+            },
+            {
+              "type": "text",
+              "id": "heading",
+              "label": "标题",
+              "default": "Dab Go"
+            },
+            {
+              "type": "text",
+              "id": "subheading",
+              "label": "副标题",
+              "default": "The First-Ever Disposable Dab Pen"
+            },
+            {
+              "type": "text",
+              "id": "button_text",
+              "label": "按钮文本",
+              "default": "Buy Now"
+            },
+            {
+              "type": "url",
+              "id": "button_link",
+              "label": "按钮链接"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "自定义视频Banner",
+          "category": "Custom",
+          "blocks": [
+            {
+              "type": "slide"
+            }
+          ]
+        }
+      ]
+    }
+  {% endschema %}

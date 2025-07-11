@@ -1,0 +1,36 @@
+.hm-link:hover {
+    color: #fff;
+  }
+  .hm-link::after {
+    background-color: #fff;
+  }
+  .header-right {
+    width: auto;
+  }
+  .header {
+    transition: transform 0.3s ease-in-out;
+    background-color: transparent;
+  }
+  .header.scrolled {
+    background-color: #ff0000; /* 使用您网站的背景颜色，这里用红色作为示例 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 添加一点阴影效果 */
+  }
+  .header-ico:nth-child(3) svg {
+    width: 2em;
+    height: 2em;
+  }
+  .cart-count-bubble {
+    position: absolute;
+    background-color: black;
+    color: white;
+    height: 1.7rem;
+    width: 1.7rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    bottom: 0.8rem;
+    left: 2.2rem;
+  }
+  

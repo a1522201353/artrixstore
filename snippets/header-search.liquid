@@ -1,0 +1,12 @@
+{%- assign search_input_id = input_id | default: 'SearchInput' -%}
+
+<button 
+    class="header-ico js-hs-open text-red bg-lightgray text-24 " 
+    data-search-trigger
+    aria-label="Search"
+    type="button"
+  >
+    <span class="svg-wrapper">
+      {{- 'icon-search.svg' | inline_asset_content -}}
+    </span>
+  </button>
