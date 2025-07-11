@@ -22,22 +22,10 @@
             "button_text": "Buy Now",
             "button_link": "shopify://products/dab-go"
           }
-        },
-        "slide_FCYNKp": {
-          "type": "slide",
-          "settings": {
-            "video_url": "",
-            "mobile_video_url": "",
-            "heading": "Dab Go",
-            "subheading": "The First-Ever Disposable Dab Pen",
-            "button_text": "Buy Now",
-            "button_link": ""
-          }
         }
       },
       "block_order": [
-        "slide_FMtCaJ",
-        "slide_FCYNKp"
+        "slide_FMtCaJ"
       ],
       "name": "自定义视频Banner",
       "settings": {
