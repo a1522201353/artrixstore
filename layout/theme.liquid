@@ -11,13 +11,14 @@
     {{ 'public.css' | asset_url | stylesheet_tag: preload: true }}
     <script src="{{ 'public.js' | asset_url }}" defer></script>
 
-    {{ 'global-header.css' | asset_url | }}
-    {{ 'splide.min.css' | asset_url | }}
+    {{ 'global-header.css' | asset_url | stylesheet_tag }}
+    {{ 'splide.min.css' | asset_url | stylesheet_tag }}
     {{ content_for_header }}
   </head>
 
   <body>
     {% sections 'header-group' %}
+    <div class="blank-top h-100"></div>
 
     {{ content_for_layout }}
 

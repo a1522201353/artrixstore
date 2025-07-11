@@ -5,7 +5,7 @@
     background-color: #fff;
   }
   .header-right {
-    width: auto;
+    width: auto !important;
   }
   .header {
     transition: transform 0.3s ease-in-out;
