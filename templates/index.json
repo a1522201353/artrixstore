@@ -22,10 +22,22 @@
             "button_text": "Buy Now",
             "button_link": "shopify://products/dab-go"
           }
+        },
+        "slide_U4cxcA": {
+          "type": "slide",
+          "settings": {
+            "video_url": "https://www.artrixglobal.com/wp-content/uploads/2024/05/Cubox-video-1.mp4?pc",
+            "mobile_video_url": "https://www.artrixglobal.com/wp-content/uploads/2024/05/2-1.mp4?m",
+            "heading": "Cubox",
+            "subheading": "The First-Ever Disposable Dab Pen",
+            "button_text": "Buy Now",
+            "button_link": "shopify://products/cubox"
+          }
         }
       },
       "block_order": [
-        "slide_FMtCaJ"
+        "slide_FMtCaJ",
+        "slide_U4cxcA"
       ],
       "name": "自定义视频Banner",
       "settings": {
