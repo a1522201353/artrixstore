@@ -9,12 +9,43 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
+    "custom_video_banner_BDp8BF": {
+      "type": "custom-video-banner",
+      "blocks": {
+        "slide_FMtCaJ": {
+          "type": "slide",
+          "settings": {
+            "video_url": "https://www.artrixglobal.com/wp-content/uploads/2024/05/Dabgo视频.mp4?pc",
+            "mobile_video_url": "https://www.artrixglobal.com/wp-content/uploads/2024/05/飞书20240530-173822-1.mp4?m",
+            "heading": "Dab Go",
+            "subheading": "The First-Ever Disposable Dab Pen",
+            "button_text": "Buy Now",
+            "button_link": "shopify://products/dab-go"
+          }
+        },
+        "slide_FCYNKp": {
+          "type": "slide",
+          "settings": {
+            "video_url": "",
+            "mobile_video_url": "",
+            "heading": "Dab Go",
+            "subheading": "The First-Ever Disposable Dab Pen",
+            "button_text": "Buy Now",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_FMtCaJ",
+        "slide_FCYNKp"
+      ],
+      "name": "自定义视频Banner",
+      "settings": {
+        "autoplay_speed": 12
+      }
     }
   },
   "order": [
-    "main"
+    "custom_video_banner_BDp8BF"
   ]
 }
