@@ -100,10 +100,56 @@
       ],
       "name": "产品类别块",
       "settings": {}
+    },
+    "home_category_new_AnzieX": {
+      "type": "home-category-new",
+      "blocks": {
+        "carousel_item_iQ9943": {
+          "type": "carousel_item",
+          "settings": {
+            "image": "shopify://shop_images/store.debgo.webp",
+            "title": "DabGo™",
+            "description": "The First-Ever Disposable Dab Pen",
+            "button_text": "Shop Now",
+            "link": "shopify://products/dab-go"
+          }
+        },
+        "carousel_item_njAJ9V": {
+          "type": "carousel_item",
+          "settings": {
+            "title": "新品上市",
+            "description": "令人惊艳的新产品",
+            "button_text": "了解更多",
+            "link": ""
+          }
+        },
+        "carousel_item_th3Dgy": {
+          "type": "carousel_item",
+          "settings": {
+            "title": "特色产品",
+            "description": "查看这款特色产品",
+            "button_text": "查看详情",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "carousel_item_iQ9943",
+        "carousel_item_njAJ9V",
+        "carousel_item_th3Dgy"
+      ],
+      "name": "产品轮播",
+      "settings": {
+        "title": "What’s New",
+        "gap": 20,
+        "autoplay": false,
+        "autoplay_interval": 4
+      }
     }
   },
   "order": [
     "custom_video_banner_BDp8BF",
-    "home_category_grid_LzkGnG"
+    "home_category_grid_LzkGnG",
+    "home_category_new_AnzieX"
   ]
 }
