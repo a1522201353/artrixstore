@@ -179,12 +179,23 @@
         "banner_link": "https://www.artrixglobal.com/products/dabpod/",
         "open_new_tab": false
       }
+    },
+    "home_why_artrix_ifzDCf": {
+      "type": "home-why-artrix",
+      "name": "Why Artrix Store",
+      "settings": {
+        "title": "Why Artrix Store",
+        "image": "shopify://shop_images/11-4.jpg",
+        "spend_text": "Spend $1",
+        "reward_text": "Earn 1 Artrix Credit Reward"
+      }
     }
   },
   "order": [
     "custom_video_banner_BDp8BF",
     "home_category_grid_LzkGnG",
     "home_category_new_AnzieX",
-    "home_soon_CmCktc"
+    "home_soon_CmCktc",
+    "home_why_artrix_ifzDCf"
   ]
 }
