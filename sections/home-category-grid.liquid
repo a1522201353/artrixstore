@@ -3,106 +3,105 @@
 {% endcomment %}
 
 <style>
-    .bpro-item {
-        width: calc(25% - 10px);
-    }
+  .bpro-item {
+    width: calc(25% - 10px);
+  }
 
-    .bpro-item::before {
-        padding-top: 49.4594595%;
-    }
+  .bpro-item::before {
+    padding-top: 49.4594595%;
+  }
 </style>
 
 <div class="py-100">
-<div class="wrap">
-<div class="max-w-1520 mx-auto flex justify-between gap-30">
-  {% for block in section.blocks %}
-    {% case block.type %}
-      {% when 'category_item' %}
-        <a href="{{ block.settings.link }}" class="bpro-item img-box" {{ block.shopify_attributes }}>
-          {% if block.settings.image != blank %}
-            <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.title }}">
-          {% endif %}
-          
-          {% if block.settings.show_title %}
-            <div class="bpro-item-desc absolute top-40 left-20">
-              <div class="text-24 text-black">{{ block.settings.title }}</div>
-              {% if block.settings.show_button %}
-                <div class="mt-20 text-16 text-black">{{ block.settings.button_text }}</div>
+  <div class="wrap">
+    <div class="max-w-1520 mx-auto flex justify-between gap-30">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'category_item' %}
+            <a href="{{ block.settings.link }}" class="bpro-item img-box stagger-animate" {{ block.shopify_attributes }} style="--index: {{ forloop.index0 }};">
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.title }}">
               {% endif %}
-            </div>
-          {% endif %}
-        </a>
-    {% endcase %}
-  {% endfor %}
-</div>
-</div>
-</div>
 
+              {% if block.settings.show_title %}
+                <div class="bpro-item-desc absolute top-40 left-20">
+                  <div class="text-24 text-black">{{ block.settings.title }}</div>
+                  {% if block.settings.show_button %}
+                    <div class="mt-20 text-16 text-black">{{ block.settings.button_text }}</div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </a>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
 
 {% schema %}
 {
-"name": "产品类别块",
-"blocks": [
-{
-  "type": "category_item",
-  "name": "类别项",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "图片"
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "链接"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_title",
-      "label": "显示标题",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "标题",
-      "default": "产品类别"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_button",
-      "label": "显示按钮文本",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "button_text",
-      "label": "按钮文本",
-      "default": "Shop Now"
-    }
-  ]
-}
-],
-"presets": [
-{
   "name": "产品类别块",
-  "category": "产品",
   "blocks": [
     {
-      "type": "category_item"
-    },
+      "type": "category_item",
+      "name": "类别项",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "图片"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_title",
+          "label": "显示标题",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "标题",
+          "default": "产品类别"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_button",
+          "label": "显示按钮文本",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "按钮文本",
+          "default": "Shop Now"
+        }
+      ]
+    }
+  ],
+  "presets": [
     {
-      "type": "category_item"
-    },
-    {
-      "type": "category_item"
-    },
-    {
-      "type": "category_item"
+      "name": "产品类别块",
+      "category": "产品",
+      "blocks": [
+        {
+          "type": "category_item"
+        },
+        {
+          "type": "category_item"
+        },
+        {
+          "type": "category_item"
+        },
+        {
+          "type": "category_item"
+        }
+      ]
     }
   ]
-}
-]
 }
 {% endschema %}
