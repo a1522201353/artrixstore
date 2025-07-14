@@ -10,7 +10,7 @@
   <splide-carousel>
     <div class="py-100">
       <div class="wrap">
-        <div class="max-w-1520 text-32 leading-12 font-700">{{ section.settings.title }}</div>
+        <div class="max-w-1520 text-32 leading-12 font-700 mx-auto">{{ section.settings.title }}</div>
         <div
           id="splide"
           class="splide mt-40 splide-specilists js-splide-specilists"
@@ -22,9 +22,10 @@
             "autoWidth":true,
             "gap":{{ section.settings.gap | default: 20 }},
             "updateOnMove":true,
-            "pagination":false
-            {% if section.settings.autoplay %},
-            "autoplay":true,
+            "pagination":false,
+            "arrows":false
+            {% if section.settings.autoplay %}
+            ,"autoplay":true,
             "interval":{{ section.settings.autoplay_interval | times: 1000 | default: 4000 }}
             {% endif %}
           }'
