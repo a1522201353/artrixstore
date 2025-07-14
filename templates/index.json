@@ -113,40 +113,10 @@
             "button_text": "Shop Now",
             "link": "shopify://products/dab-go"
           }
-        },
-        "carousel_item_HtRwDp": {
-          "type": "carousel_item",
-          "settings": {
-            "title": "DabGo™",
-            "description": "首款一次性蜡笔",
-            "button_text": "立即购买",
-            "link": ""
-          }
-        },
-        "carousel_item_nnhmPE": {
-          "type": "carousel_item",
-          "settings": {
-            "title": "新品上市",
-            "description": "令人惊艳的新产品",
-            "button_text": "了解更多",
-            "link": ""
-          }
-        },
-        "carousel_item_zUHqXX": {
-          "type": "carousel_item",
-          "settings": {
-            "title": "特色产品",
-            "description": "查看这款特色产品",
-            "button_text": "查看详情",
-            "link": ""
-          }
         }
       },
       "block_order": [
-        "carousel_item_M79UbK",
-        "carousel_item_HtRwDp",
-        "carousel_item_nnhmPE",
-        "carousel_item_zUHqXX"
+        "carousel_item_M79UbK"
       ],
       "name": "产品轮播",
       "settings": {
