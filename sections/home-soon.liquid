@@ -1,0 +1,65 @@
+<style>
+    .soon-img {
+      width: 100%;
+    }
+    .soon-img::before {
+      padding-top: 21.7105263%;
+    }
+  </style>
+  
+  <div class="py-100">
+    <div class="wrap">
+      <div class="max-w-1520 mx-auto">
+        <div class="soon-img img-box">
+          {% if section.settings.banner_image %}
+            <img src="{{ section.settings.banner_image | img_url: 'master' }}" 
+                 alt="{{ section.settings.banner_image.alt | default: section.settings.alt_text }}">
+          {% else %}
+            <div class="placeholder-image bg-gray-200 flex items-center justify-center">
+              <span class="text-gray-500">请上传图片</span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {% schema %}
+  {
+    "name": "Banner图片",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "banner_image",
+        "label": "Banner图片",
+        "info": "建议尺寸：1520x330px（比例约7:1.5）"
+      },
+      {
+        "type": "text",
+        "id": "alt_text",
+        "label": "图片描述文字",
+        "info": "用于SEO和无障碍访问，如果图片本身有alt属性则优先使用图片的alt"
+      },
+      {
+        "type": "url",
+        "id": "banner_link",
+        "label": "点击链接",
+        "info": "可选，设置后图片可点击跳转"
+      },
+      {
+        "type": "checkbox",
+        "id": "open_new_tab",
+        "label": "新窗口打开链接",
+        "default": false,
+        "info": "只有设置了链接时才生效"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Banner图片"
+      }
+    ]
+  }
+  {% endschema %}
