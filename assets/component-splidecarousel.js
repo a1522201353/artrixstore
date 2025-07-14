@@ -8,7 +8,7 @@ class SplideCarousel extends HTMLElement {
     }
   
     initSplide() {
-      const splideElement = this.querySelector('.splide');
+      const splideElement = this.querySelector('.js-splide-specilists');
       if (splideElement && window.Splide) {
         new Splide(splideElement).mount();
       }

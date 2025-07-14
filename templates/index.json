@@ -100,36 +100,10 @@
       ],
       "name": "产品类别块",
       "settings": {}
-    },
-    "home_category_new_j9WJnW": {
-      "type": "home-category-new",
-      "blocks": {
-        "carousel_item_M79UbK": {
-          "type": "carousel_item",
-          "settings": {
-            "image": "shopify://shop_images/store.debgo.webp",
-            "title": "Dab Go",
-            "description": "The First-Ever Disposable Dab Pen",
-            "button_text": "Shop Now",
-            "link": "shopify://products/dab-go"
-          }
-        }
-      },
-      "block_order": [
-        "carousel_item_M79UbK"
-      ],
-      "name": "产品轮播",
-      "settings": {
-        "title": "What’s New",
-        "gap": 20,
-        "autoplay": false,
-        "autoplay_interval": 4
-      }
     }
   },
   "order": [
     "custom_video_banner_BDp8BF",
-    "home_category_grid_LzkGnG",
-    "home_category_new_j9WJnW"
+    "home_category_grid_LzkGnG"
   ]
 }
