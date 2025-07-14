@@ -169,11 +169,22 @@
         "autoplay": false,
         "autoplay_interval": 4
       }
+    },
+    "home_soon_CmCktc": {
+      "type": "home-soon",
+      "name": "Banner图片",
+      "settings": {
+        "banner_image": "shopify://shop_images/dabpod-banner1.png",
+        "alt_text": "",
+        "banner_link": "https://www.artrixglobal.com/products/dabpod/",
+        "open_new_tab": false
+      }
     }
   },
   "order": [
     "custom_video_banner_BDp8BF",
     "home_category_grid_LzkGnG",
-    "home_category_new_AnzieX"
+    "home_category_new_AnzieX",
+    "home_soon_CmCktc"
   ]
 }
