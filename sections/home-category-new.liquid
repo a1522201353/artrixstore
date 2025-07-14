@@ -42,7 +42,7 @@
                     {% comment %} 485*485 {% endcomment %}
                     <div class="category-new-item img-box relative">
                       {% if block.settings.image %}
-                        <img src="{{ block.settings.image | img_url: '485x485' }}" alt="{{ block.settings.image.alt | default: block.settings.title }}">
+                        <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.image.alt | default: block.settings.title }}" style="border-radius:10px;">
                       {% else %}
                         <div class="placeholder-image bg-gray-200"></div>
                       {% endif %}
