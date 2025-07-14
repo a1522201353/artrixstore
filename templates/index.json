@@ -117,26 +117,50 @@
         "carousel_item_njAJ9V": {
           "type": "carousel_item",
           "settings": {
-            "title": "新品上市",
-            "description": "令人惊艳的新产品",
-            "button_text": "了解更多",
-            "link": ""
+            "image": "shopify://shop_images/store-limon.webp",
+            "title": "Limon",
+            "description": "Next-Gen Mini D8 All-in-One",
+            "button_text": "Shop Now",
+            "link": "shopify://products/lilmon"
           }
         },
         "carousel_item_th3Dgy": {
           "type": "carousel_item",
           "settings": {
-            "title": "特色产品",
-            "description": "查看这款特色产品",
-            "button_text": "查看详情",
-            "link": ""
+            "image": "shopify://shop_images/store-cubox.webp",
+            "title": "Cubox",
+            "description": "Box-Like CBD Disposable Vape",
+            "button_text": "Shop Now",
+            "link": "shopify://products/cubox"
+          }
+        },
+        "carousel_item_zGYEtn": {
+          "type": "carousel_item",
+          "settings": {
+            "image": "shopify://shop_images/store-xlite.webp",
+            "title": "Xlite",
+            "description": "Tech-Fashion D9 Vape Pod",
+            "button_text": "Shop Now",
+            "link": "shopify://products/xlite"
+          }
+        },
+        "carousel_item_GPhaxx": {
+          "type": "carousel_item",
+          "settings": {
+            "image": "shopify://shop_images/bony.webp",
+            "title": "Bony",
+            "description": "Concealed Discreet 510 Battery",
+            "button_text": "Shop Now",
+            "link": "shopify://products/bony"
           }
         }
       },
       "block_order": [
         "carousel_item_iQ9943",
         "carousel_item_njAJ9V",
-        "carousel_item_th3Dgy"
+        "carousel_item_th3Dgy",
+        "carousel_item_zGYEtn",
+        "carousel_item_GPhaxx"
       ],
       "name": "产品轮播",
       "settings": {
