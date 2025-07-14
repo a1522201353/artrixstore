@@ -1,33 +1,65 @@
 <style>
-  .whas-a01 {
-    width: calc(33.333333% - 20px);
-  }
-  .whas-a01::before {
-    padding-top: 136.986301%;
-  }
-</style>
-
-<div class="py-100">
-  <div class="wrap">
-    <div class="max-w-1520 mx-auto">
-      <div class=" text-32 leading-12 font-700 ">Why Artrix Store</div>
-      <div class="mt-20 flex gap-20 justify-between">
-        <div class="whas-a01 img-box">
-          <img src="">
-          <div class="absolute top-20 left-20 text-24 leading-12">
-            <div>Spend $1</div>
-            <div>Earn 1 Artrix Credit Reward</div>
+    .whas-a01 {
+      width: calc(33.333333% - 20px);
+    }
+    .whas-a01::before {
+      padding-top: 136.986301%;
+    }
+  </style>
+  
+  <div class="py-100">
+    <div class="wrap">
+      <div class="max-w-1520 mx-auto">
+        <div class="text-32 leading-12 font-700">{{ section.settings.title | default: "Why Artrix Store" }}</div>
+        <div class="mt-20 flex gap-20 justify-between">
+          <div class="whas-a01 img-box">
+            {% if section.settings.image %}
+              <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.image.alt | default: section.settings.title }}">
+            {% endif %}
+            <div class="absolute top-20 left-20 text-24 leading-12">
+              <div>{{ section.settings.spend_text | default: "Spend $1" }}</div>
+              <div>{{ section.settings.reward_text | default: "Earn 1 Artrix Credit Reward" }}</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
-{% schema %}
-{
-  "name": "Why Artrix Store",
-  "tag": "section",
-  "class": "section"
-}
-{% endschema %}
+  
+  {% schema %}
+  {
+    "name": "Why Artrix Store",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Section Title",
+        "default": "Why Artrix Store"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Background Image"
+      },
+      {
+        "type": "text",
+        "id": "spend_text",
+        "label": "Spend Text",
+        "default": "Spend $1"
+      },
+      {
+        "type": "text", 
+        "id": "reward_text",
+        "label": "Reward Text",
+        "default": "Earn 1 Artrix Credit Reward"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Why Artrix Store"
+      }
+    ]
+  }
+  {% endschema %}
