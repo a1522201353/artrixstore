@@ -43,9 +43,67 @@
       "settings": {
         "autoplay_speed": 12
       }
+    },
+    "home_category_grid_LzkGnG": {
+      "type": "home-category-grid",
+      "blocks": {
+        "category_item_mddwEE": {
+          "type": "category_item",
+          "settings": {
+            "image": "shopify://shop_images/DABGO-_-1.png",
+            "link": "shopify://collections/dab-pen",
+            "show_title": true,
+            "title": "DabPen",
+            "show_button": true,
+            "button_text": "Shop Now"
+          }
+        },
+        "category_item_9z7E3z": {
+          "type": "category_item",
+          "settings": {
+            "image": "shopify://shop_images/510-_-1.png",
+            "link": "shopify://collections/510-cartriage",
+            "show_title": true,
+            "title": "510 Cartrlage",
+            "show_button": true,
+            "button_text": "Shop Now"
+          }
+        },
+        "category_item_cNc8Bx": {
+          "type": "category_item",
+          "settings": {
+            "image": "shopify://shop_images/xlite_ff350b93-b0a7-4d97-91f7-d457a9c27d53.png",
+            "link": "shopify://collections/pod-system",
+            "show_title": true,
+            "title": "Pod System",
+            "show_button": true,
+            "button_text": "Shop Now"
+          }
+        },
+        "category_item_8yQXWF": {
+          "type": "category_item",
+          "settings": {
+            "image": "shopify://shop_images/CUBOX_31e1e248-4d52-4d1a-8868-ec5350631ad1.png",
+            "link": "shopify://collections/disposable",
+            "show_title": true,
+            "title": "disposable",
+            "show_button": true,
+            "button_text": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "category_item_mddwEE",
+        "category_item_9z7E3z",
+        "category_item_cNc8Bx",
+        "category_item_8yQXWF"
+      ],
+      "name": "产品类别块",
+      "settings": {}
     }
   },
   "order": [
-    "custom_video_banner_BDp8BF"
+    "custom_video_banner_BDp8BF",
+    "home_category_grid_LzkGnG"
   ]
 }
