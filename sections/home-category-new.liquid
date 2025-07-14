@@ -6,6 +6,9 @@
     .category-new-item::before {
       padding-top: 100%;
     }
+    .w-fit{
+      width: fit-content;
+    }
   </style>
   
   <splide-carousel>
@@ -47,7 +50,7 @@
                         <div class="text-24 font-700 leading-12 text-black">{{ block.settings.title }}</div>
                         <div class="text-16 text-black">{{ block.settings.description }}</div>
                         {% if block.settings.button_text %}
-                          <div class="text-16 inline-block learn-more bg-red text-white px-4 py-2">{{ block.settings.button_text }}</div>
+                          <div class="text-16 inline-block learn-more bg-red text-white w-fit">{{ block.settings.button_text }}</div>
                         {% endif %}
                       </div>
                     </div>
