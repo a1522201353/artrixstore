@@ -37,7 +37,7 @@
           <div class="splide__track">
             <ul class="splide__list">
               {% for block in section.blocks %}
-                <li class="splide__slide stagger-animate" {{ block.shopify_attributes }} style="--index: {{ forloop.index0 }};">
+                <li class="splide__slide " {{ block.shopify_attributes }} >
                   <a href="{{ block.settings.link | default: '#' }}">
                     {% comment %} 485*485 {% endcomment %}
                     <div class="category-new-item img-box relative">

@@ -1,24 +1,107 @@
 <style>
-    .whas-a01 {
+    .whas-item {
       width: calc(33.333333% - 20px);
     }
-    .whas-a01::before {
+    .whas-item::before {
       padding-top: 136.986301%;
+    }
+    .whas-item-top::before {
+      padding-top: calc(136.986301% / 2);
+    }
+    .whas-item-bottom::before {
+      padding-top: calc(136.986301% / 2);
+    }
+    .whas-item-top02::before {
+      padding-top: calc(136.986301% / 3);
+    }
+    .whas-item-bottom02::before {
+      padding-top: calc(136.986301% / 3 * 2);
     }
   </style>
   
   <div class="py-100">
     <div class="wrap">
       <div class="max-w-1520 mx-auto">
-        <div class="text-32 leading-12 font-700">{{ section.settings.title | default: "Why Artrix Store" }}</div>
+        <div class="text-32 leading-12 font-700">{{ section.settings.title | default: 'Why Artrix Store' }}</div>
         <div class="mt-20 flex gap-20 justify-between">
-          <div class="whas-a01 img-box">
+          <!-- First Item: Rewards -->
+          <div class="whas-item img-box stagger-animate" style="--index: 0;">
             {% if section.settings.image %}
-              <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.image.alt | default: section.settings.title }}">
+              <img
+                src="{{ section.settings.image | img_url: 'master' }}"
+                alt="{{ section.settings.image.alt | default: section.settings.title }}"
+              >
             {% endif %}
             <div class="absolute top-20 left-20 text-24 leading-12">
-              <div>{{ section.settings.spend_text | default: "Spend $1" }}</div>
-              <div>{{ section.settings.reward_text | default: "Earn 1 Artrix Credit Reward" }}</div>
+              <div>{{ section.settings.spend_text | default: 'Spend $1' }}</div>
+              <div>{{ section.settings.reward_text | default: 'Earn 1 Artrix Credit Reward' }}</div>
+            </div>
+          </div>
+          
+          <!-- Second Item: Shipping -->
+          <div class="whas-item flex flex-col gap-20 justify-between stagger-animate" style="--index: 1;">
+            <div class="whas-item-top img-box w-full">
+              {% if section.settings.shipping_image_1 %}
+                <img 
+                  src="{{ section.settings.shipping_image_1 | img_url: 'master' }}"
+                  alt="{{ section.settings.shipping_image_1.alt | default: section.settings.free_shipping_text }}"
+                >
+              {% endif %}
+              <div class="text-center leading-12 text-24 leading-12 absolute top-40 left-0 right-0 bottom-0">
+                <div>{{ section.settings.free_shipping_text | default: 'Over $50 Ships Free' }}</div>
+              </div>
+            </div>
+            <div class="whas-item-bottom img-box w-full">
+              {% if section.settings.shipping_image_2 %}
+                <img 
+                  src="{{ section.settings.shipping_image_2 | img_url: 'master' }}"
+                  alt="{{ section.settings.shipping_image_2.alt | default: section.settings.fast_shipping_text }}"
+                >
+              {% endif %}
+              <div class="text-center leading-12 text-24 leading-12 absolute top-40 left-0 right-0 bottom-0">
+                <div>{{ section.settings.fast_shipping_text | default: 'Shipped within 24H' }}</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Third Item: Returns & Support -->
+          <div class="whas-item flex flex-col gap-20 justify-between stagger-animate" style="--index: 2;">
+            <div class="whas-item-top02 img-box w-full">
+              {% if section.settings.returns_image %}
+                <img 
+                  src="{{ section.settings.returns_image | img_url: 'master' }}"
+                  alt="{{ section.settings.returns_image.alt | default: section.settings.returns_text }}"
+                >
+              {% endif %}
+              <div class="absolute top-20 left-20 text-24 leading-12">
+                {{ section.settings.returns_text | default: '7-Day Returns' }}
+              </div>
+            </div>
+            <div class="whas-item-bottom02 img-box w-full">
+              {% if section.settings.support_image %}
+                <img 
+                  src="{{ section.settings.support_image | img_url: 'master' }}"
+                  alt="{{ section.settings.support_image.alt | default: 'Support' }}"
+                >
+              {% endif %}
+              <div class="absolute top-20 left-20 text-24 leading-12">
+                <div>{{ section.settings.support_text_1 | default: 'Get Artrix' }}</div>
+                <div>{{ section.settings.support_text_2 | default: 'Expert Help' }}</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Fourth Item: Partner Benefits -->
+          <div class="whas-item img-box stagger-animate" style="--index: 3;">
+            {% if section.settings.partner_image %}
+              <img 
+                src="{{ section.settings.partner_image | img_url: 'master' }}"
+                alt="{{ section.settings.partner_image.alt | default: 'Partner Benefits' }}"
+              >
+            {% endif %}
+            <div class="absolute top-20 left-20 text-24 leading-12">
+              <div>{{ section.settings.partner_text_1 | default: 'Official' }}</div>
+              <div>{{ section.settings.partner_text_2 | default: 'Partner Benefits' }}</div>
             </div>
           </div>
         </div>
@@ -35,25 +118,98 @@
       {
         "type": "text",
         "id": "title",
-        "label": "Section Title",
-        "default": "Why Artrix Store"
+        "label": "标题"
+      },
+      {
+        "type": "header",
+        "content": "第一项（奖励积分）"
       },
       {
         "type": "image_picker",
         "id": "image",
-        "label": "Background Image"
+        "label": "奖励背景图片"
       },
       {
         "type": "text",
         "id": "spend_text",
-        "label": "Spend Text",
-        "default": "Spend $1"
+        "label": "消费文本"
       },
       {
-        "type": "text", 
+        "type": "text",
         "id": "reward_text",
-        "label": "Reward Text",
-        "default": "Earn 1 Artrix Credit Reward"
+        "label": "奖励文本"
+      },
+      {
+        "type": "header",
+        "content": "第二项（运输服务）"
+      },
+      {
+        "type": "image_picker",
+        "id": "shipping_image_1",
+        "label": "免费运输图片"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_text",
+        "label": "免费运输文本"
+      },
+      {
+        "type": "image_picker",
+        "id": "shipping_image_2",
+        "label": "快速运输图片"
+      },
+      {
+        "type": "text",
+        "id": "fast_shipping_text",
+        "label": "快速运输文本"
+      },
+      {
+        "type": "header",
+        "content": "第三项（退换货和支持）"
+      },
+      {
+        "type": "image_picker",
+        "id": "returns_image",
+        "label": "退换货图片"
+      },
+      {
+        "type": "text",
+        "id": "returns_text",
+        "label": "退换货文本"
+      },
+      {
+        "type": "image_picker",
+        "id": "support_image",
+        "label": "客服支持图片"
+      },
+      {
+        "type": "text",
+        "id": "support_text_1",
+        "label": "客服支持文本第一行"
+      },
+      {
+        "type": "text",
+        "id": "support_text_2",
+        "label": "客服支持文本第二行"
+      },
+      {
+        "type": "header",
+        "content": "第四项（合作伙伴权益）"
+      },
+      {
+        "type": "image_picker",
+        "id": "partner_image",
+        "label": "合作伙伴图片"
+      },
+      {
+        "type": "text",
+        "id": "partner_text_1",
+        "label": "合作伙伴文本第一行"
+      },
+      {
+        "type": "text",
+        "id": "partner_text_2",
+        "label": "合作伙伴文本第二行"
       }
     ],
     "presets": [
