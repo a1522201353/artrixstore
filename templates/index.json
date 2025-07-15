@@ -187,7 +187,16 @@
         "title": "Why Artrix Store",
         "image": "shopify://shop_images/11-4.jpg",
         "spend_text": "Spend $1",
-        "reward_text": "Earn 1 Artrix Credit Reward"
+        "reward_text": "Earn 1 Artrix Credit Reward",
+        "shipping_image_1": "shopify://shop_images/11-2.jpg",
+        "free_shipping_text": "Over $50 Ships Free",
+        "shipping_image_2": "shopify://shop_images/11-6.jpg",
+        "fast_shipping_text": "Shipped within 24H",
+        "returns_text": "",
+        "support_text_1": "",
+        "support_text_2": "",
+        "partner_text_1": "",
+        "partner_text_2": ""
       }
     }
   },
