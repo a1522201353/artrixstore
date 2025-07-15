@@ -192,11 +192,14 @@
         "free_shipping_text": "Over $50 Ships Free",
         "shipping_image_2": "shopify://shop_images/11-6.jpg",
         "fast_shipping_text": "Shipped within 24H",
-        "returns_text": "",
-        "support_text_1": "",
-        "support_text_2": "",
-        "partner_text_1": "",
-        "partner_text_2": ""
+        "returns_image": "shopify://shop_images/11-3.jpg",
+        "returns_text": "7-Day Returns",
+        "support_image": "shopify://shop_images/11-1.jpg",
+        "support_text_1": "Get Artrix",
+        "support_text_2": "Expert Help",
+        "partner_image": "shopify://shop_images/11-5.jpg",
+        "partner_text_1": "Official",
+        "partner_text_2": "Partner Benefits"
       }
     }
   },
