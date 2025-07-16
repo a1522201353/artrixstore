@@ -1,64 +1,112 @@
+<style>
+    .errors {
+        background: #f9edec;
+        border-radius: 5px;
+        color: red
+    }
+
+    .errors ul {
+        list-style: none;
+        padding: 4px 15px;
+    }
+
+</style>
+
 <div class="pt-120 pb-160">
-  <div class="wrap">
-    <div class="max-w-1220 comm-layer-body mx-auto bg-white relative rounded-sm">
-      <div class="layer-login flex justify-center">
-        <div class="llogin-right flex items-center">
-          <div class="w-full">
-            <div class="max-w-480 mx-auto">
-              <div class="text-68 font-700 text-red text-center leading-1">Login</div>
-              <form
-                action="https://www.artrixglobal.com/wp-json/suma-user/v1/user-login"
-                method="post"
-                id="loginForm"
-                novalidate="novalidate"
-              >
-                <input type="hidden" name="redirect_from" value="" class="cform-input text-16">
-                <div class="flex flex-wrap gap-y-30  mt-60">
-                  <div class="cform-item w-full">
-                    <input type="email" name="username" placeholder="E-mail" class="cform-input text-16">
+    <div class="wrap">
+      <div class="max-w-1220 comm-layer-body mx-auto bg-white relative rounded-sm">
+        <div class="layer-login flex justify-center">
+          <div class="llogin-right flex items-center">
+            <div class="w-full">
+              <div class="max-w-480 mx-auto">
+                <div class="text-68 font-700 text-red text-center leading-1">Login</div>
+                
+                <!-- 登录表单 -->
+                {% form 'customer_login', id: 'loginForm', novalidate: 'novalidate' %}
+                  <div class="alert-warning mt-40" role="alert">
+                  {{ form.errors | default_errors }}
                   </div>
-                  <div class="cform-item w-full">
-                    <input type="password" name="password" placeholder="Password" class="cform-input text-16">
+                  
+                  <div class="flex flex-wrap gap-y-30 mt-60">
+                    <div class="cform-item w-full">
+                      <input 
+                        id="customer_email"
+                        type="email" 
+                        name="customer[email]" 
+                        placeholder="E-mail" 
+                        class="cform-input text-16 {% if form.errors.email %}input-error{% endif %}"
+                        value="{{ form.email }}"
+                        autocorrect="off" 
+                        autocapitalize="off" 
+                        autocomplete="email"
+                        {% if form.errors.email %}aria-invalid="true"{% endif %}
+                        required
+                      >
+                      {% if form.errors.email %}
+                        <span class="form-error text-red text-14">{{ form.errors.email }}</span>
+                      {% endif %}
+                    </div>
+                    
+                    <div class="cform-item w-full">
+                      <input 
+                        id="customer_password"
+                        type="password" 
+                        name="customer[password]" 
+                        placeholder="Password" 
+                        class="cform-input text-16 {% if form.errors.password %}input-error{% endif %}"
+                        {% if form.errors.password %}aria-invalid="true"{% endif %}
+                        required
+                      >
+                      {% if form.errors.password %}
+                        <span class="form-error text-red text-14">{{ form.errors.password }}</span>
+                      {% endif %}
+                    </div>
                   </div>
-                </div>
-                <div class="llogin-tip flex flex-wrap justify-between mt-30">
-                  <div class="llogint-left">
-                    <a
-                      href="/reset-password/"
-                      class="text-gray text-16 left-15 hover:text-black hover:underline transition-color"
-                      >Forget the password</a
+                  
+                  <div class="llogin-tip flex flex-wrap justify-between mt-30">
+                    <div class="llogint-left">
+                      <a 
+                        href="#recover"
+                        data-recover-link
+                        class="text-gray text-16 left-15 hover:text-black hover:underline transition-color"
+                      >Forget the password</a>
+                    </div>
+                    <div class="lligint-right text-gray text-16">
+                      No account?
+                      <a href="{{ routes.account_register_url }}" class="text-gray text-16 left-15 hover:text-black transition-color underline">Sign up</a>
+                      now.
+                    </div>
+                  </div>
+                  
+                  <div class="text-center">
+                    <input 
+                      type="submit" 
+                      value="Login"
+                      class="text-20 mt-60 infobank-link inline-block bg-red text-white text-center cursor-pointer border-0"
                     >
                   </div>
-                  <div class="lligint-right text-gray text-16">
-                    No account?
-                    <a href="/sign-up/" class="text-gray text-16 left-15 hover:text-black transition-color underline"
-                      >Sign up</a
-                    >
-                    now.
-                  </div>
-                </div>
-                <div class="text-center">
-                  <button type="submit" class="text-20 mt-60 infobank-link inline-block bg-red text-white text-center">
-                    Login
-                  </button>
-                </div>
-              </form>
+                {% endform %}
+                
+                
+                
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  <script src="{{ 'va-login.js' | asset_url }}" defer></script>
 
-{% schema %}
-{
-  "name": "客户登录",
-  "settings": [],
-  "presets": [
-    {
-      "name": "客户登录"
-    }
-  ]
-}
-{% endschema %}
+  
+  {% schema %}
+  {
+    "name": "客户登录",
+    "settings": [],
+    "presets": [
+      {
+        "name": "客户登录"
+      }
+    ]
+  }
+  {% endschema %}
