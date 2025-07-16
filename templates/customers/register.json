@@ -11,7 +11,7 @@
     "wrapper": "div#main",
     "sections": {
       "main": {
-        "type": "main-login",
+        "type": "main-register",
         "settings": {}
       }
     },

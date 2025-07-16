@@ -1,0 +1,80 @@
+<div class="customer account page-width section-{{ section.id }}-padding">
+    <div class="customer__header">
+      <h1 class="main-page-title">{{ 'customer.account.title' | t }}</h1>
+      <a href="{{ routes.account_logout_url }}">
+        {{ 'customer.log_out' | t }}
+      </a>
+    </div>
+  
+    <div class="customer__orders">
+      <h2>{{ 'customer.orders.title' | t }}</h2>
+      
+      {% paginate customer.orders by 5 %}
+        {% if customer.orders.size > 0 %}
+          <table class="order-history">
+            <thead>
+              <tr>
+                <th>{{ 'customer.orders.order_number' | t }}</th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.payment_status' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th>{{ 'customer.orders.total' | t }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in customer.orders %}
+                <tr>
+                  <td><a href="{{ order.customer_url }}">{{ order.name }}</a></td>
+                  <td>{{ order.created_at | date: format: 'date' }}</td>
+                  <td>{{ order.financial_status_label }}</td>
+                  <td>{{ order.fulfillment_status_label | default: 'Unfulfilled' }}</td>
+                  <td>{{ order.total_price | money }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+  
+          {% if paginate.pages > 1 %}
+            <nav class="pagination">
+              {{ paginate | default_pagination: next: 'Next', previous: 'Previous' }}
+            </nav>
+          {% endif %}
+        {% else %}
+          <p>{{ 'customer.orders.none' | t }}</p>
+        {% endif %}
+      {% endpaginate %}
+    </div>
+  
+    <div class="customer__addresses">
+      <h2>{{ 'customer.addresses.title' | t }}</h2>
+      
+      {% if customer.default_address %}
+        <div class="address">
+          <h3>{{ 'customer.addresses.default' | t }}</h3>
+          {{ customer.default_address | format_address }}
+          <p>
+            <a href="{{ routes.account_addresses_url }}">
+              {{ 'customer.addresses.edit' | t }}
+            </a>
+          </p>
+        </div>
+      {% else %}
+        <p>{{ 'customer.addresses.none' | t }}</p>
+        <a href="{{ routes.account_addresses_url }}">
+          {{ 'customer.addresses.add' | t }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+  
+  {% schema %}
+  {
+    "name": "客户账户",
+    "settings": [],
+    "presets": [
+      {
+        "name": "客户账户"
+      }
+    ]
+  }
+  {% endschema %}
