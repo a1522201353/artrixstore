@@ -103,6 +103,10 @@
                 <div class="text-68 font-700 text-red text-center leading-1">Reset Password</div>
 
                 {% form 'recover_customer_password', id: 'recoverForm', novalidate: 'novalidate' %}
+
+                  <div class="mt-40 text-gray text-24 leading-12">We will send you an email to reset your password
+
+                </div>
                   <div class="alert-warning mt-40" role="alert">
                     {{ form.errors | default_errors }}
                   </div>
