@@ -1,52 +1,55 @@
-{% comment %}
-  This section is used in the product template to render product page with
-  media, content, and add-to-cart form.
-
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/product
-{% endcomment %}
-
-<div class="product-images">
-  {% for image in product.images %}
-    {% render 'image', class: 'product-image', image: image %}
-  {% endfor %}
-</div>
-
-<div class="product-info">
-  <h1>{{ product.title }}</h1>
-  <p>{{ product.price | money }}</p>
-  <p>{{ product.description }}</p>
-</div>
-
-<div class="product-form">
-  {% form 'product', product %}
-    {% assign current_variant = product.selected_or_first_available_variant %}
-
-    <select name="id">
-      {% for variant in product.variants %}
-        <option
-          value="{{ variant.id }}"
-          {% if variant == current_variant %}
-            selected="selected"
-          {% endif %}
-        >
-          {{ variant.title }} - {{ variant.price | money }}
-        </option>
-      {% endfor %}
-    </select>
-
-    <input type="text" name="quantity" min="1" value="1">
-
-    <input type="submit" value="Add to cart">
-    {{ form | payment_button }}
-  {% endform %}
-</div>
-
-{% schema %}
-{
-  "name": "t:general.product",
-  "settings": [],
-  "disabled_on": {
-    "groups": ["header", "footer"]
+<style>
+  .thumbnail-container {
+    width:14.893617%;
   }
-}
-{% endschema %}
+  .product-left {
+    width: 42.9616088%;
+  }
+  .main-image-container {
+    width:81.7021277%;
+  }
+  .product-right {
+    width: 52.7422303%;
+  }
+</style>
+
+<section>
+  <div class="wrap">
+    <div class="max-w-1520 mx-auto">
+      <div class="product-container mx-auto flex justify-between">
+        <product-gallery-h class="product-left flex justify-between">
+          <div class="thumbnail-container h-full">
+            <div class="splide js-splide-thumbnail h-full">
+              <div class="splide__track h-full">
+                <ul class="splide__list">
+                  {% for image in product.images %}
+                    <li class="splide__slide img-box thumbnail-item">
+                      <img src="{{ image | img_url: 'master' }}" alt="{{ product.title | escape }}">
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="main-image-container">
+            <div class="splide js-main-splide h-full">
+              <div class="splide__track h-full">
+                <ul class="splide__list">
+                  {% for image in product.images %}
+                    <li class="splide__slide img-box main-item">
+                      <img src="{{ image | img_url: 'master' }}" alt="{{ product.title | escape }}">
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </product-gallery-h>
+        <div class="product-right">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'component-products.js' | asset_url }}" defer></script>
