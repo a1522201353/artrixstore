@@ -1,0 +1,82 @@
+<style>
+  .pagination__item {
+    padding: 12px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    color: #000;
+    border: 2px solid transparent;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 44px;
+    background: transparent;
+  }
+
+  .pagination__item:hover,
+  .pagination__item--current {
+    background: #dc2626;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+  }
+</style>
+
+{% if paginate.pages > 1 %}
+  <nav class="pagination mt-40" role="navigation" aria-label="Pagination">
+    <ol class="pagination__list flex justify-center items-center gap-10" role="list">
+      <!-- 上一页按钮 -->
+      {% if paginate.previous %}
+        <li>
+          <a
+            href="{{ paginate.previous.url }}"
+            class="pagination__item"
+            aria-label="{{ 'general.pagination.previous' | t | default: 'Previous page' }}"
+          >
+            ‹ Previous
+          </a>
+        </li>
+      {% endif %}
+
+      <!-- 页码按钮 -->
+      {% for part in paginate.parts %}
+        <li>
+          {% if part.is_link %}
+            <a
+              href="{{ part.url }}"
+              class="pagination__item"
+              aria-label="{{ 'general.pagination.page' | t: number: part.title | default: 'Page' }} {{ part.title }}"
+            >
+              {{ part.title }}
+            </a>
+        {% else %}
+            {% if part.title == paginate.current_page %}
+              <span class="pagination__item pagination__item--current" aria-current="page">
+            {% else %}
+              <span class="pagination__item">
+            {% endif %}
+              {{ part.title }}
+            </span>
+          {% endif %}
+        </li>
+      {% endfor %}
+
+      <!-- 下一页按钮 -->
+      {% if paginate.next %}
+        <li>
+          <a
+            href="{{ paginate.next.url }}"
+            class="pagination__item"
+            aria-label="{{ 'general.pagination.next' | t | default: 'Next page' }}"
+          >
+            Next ›
+          </a>
+        </li>
+      {% endif %}
+    </ol>
+  </nav>
+{% endif %}

@@ -171,7 +171,7 @@
                       {% endif %}
 
                       <div class="address-info flex flex-col gap-10">
-                        <div class="name font-600 text-24 mb-5">
+                        <div class="name font-600 text-24 mb-5 font-700">
                           {{ address.first_name }}
                           {{ address.last_name }}
                         </div>
@@ -198,17 +198,14 @@
                         >
 
                         {% unless address == customer.default_address %}
-                          {% form 'customer_address', address %}
-                            <button
-                              type="submit"
-                              name="_method"
-                              value="delete"
-                              class="btn-delete text-red text-20"
-                              onclick="return confirm('Are you sure you want to delete this address?')"
-                            >
-                              Delete
-                            </button>
-                          {% endform %}
+                            <form method="post" action="/account/addresses/{{ address.id }}">
+                                <input type="hidden" name="form_type" value="customer_address" />
+                                <input type="hidden" name="utf8" value="✓" />
+                                <input type="hidden" name="_method" value="delete" />
+                                <button type="submit" class="btn-delete text-red text-20" onclick="return confirm('Are you sure you want to delete this address?')">
+                                  Delete
+                                </button>
+                              </form>
                         {% endunless %}
 
                         {% unless address == customer.default_address %}
@@ -227,86 +224,7 @@
                   <button class="bg-red text-white px-30 py-15 rounded">Add Your First Address</button>
                 </div>
               {% endif %}
-
-              {% if paginate.pages > 1 %}
-                <nav class="pagination mt-40" role="navigation" aria-label="Pagination">
-                  <ol class="pagination__list flex justify-center items-center gap-10" role="list">
-                    <!-- 上一页按钮 -->
-                    {% if paginate.previous %}
-                      <li>
-                        <a
-                          href="{{ paginate.previous.url }}"
-                          class="pagination__item pagination__item--prev px-15 py-10 bg-gray-100 hover:bg-gray-200 rounded text-16"
-                          aria-label="{{ 'general.pagination.previous' | t | default: 'Previous page' }}"
-                        >
-                          ‹ Previous
-                        </a>
-                      </li>
-                    {% else %}
-                      <li>
-                        <span
-                          class="pagination__item pagination__item--prev px-15 py-10 bg-gray-100 text-gray-400 rounded text-16"
-                          aria-disabled="true"
-                        >
-                          ‹ Previous
-                        </span>
-                      </li>
-                    {% endif %}
-
-                    <!-- 页码按钮 -->
-                    {% assign current_page_str = paginate.current_page | append: '' %}
-                    {% for part in paginate.parts %}
-                      <li>
-                        {% if part.is_link %}
-                          <a
-                            href="{{ part.url }}"
-                            class="pagination__item px-15 py-10 bg-gray-100 hover:bg-blue-500 hover:text-white rounded text-16"
-                            aria-label="{{ 'general.pagination.page' | t: number: part.title | default: 'Page' }} {{ part.title }}"
-                          >
-                            {{ part.title }}
-                          </a>
-                        {% else %}
-                          {% if part.title == current_page_str %}
-                            <span
-                              class="pagination__item pagination__item--current px-15 py-10 bg-blue-500 text-white rounded text-16"
-                              aria-current="page"
-                              aria-label="{{ 'general.pagination.page' | t: number: part.title | default: 'Page' }} {{ part.title }}"
-                            >
-                              {{ part.title }}
-                            </span>
-                          {% else %}
-                            <span class="pagination__item px-15 py-10 text-gray-400 rounded text-16">
-                              {{ part.title }}
-                            </span>
-                          {% endif %}
-                        {% endif %}
-                      </li>
-                    {% endfor %}
-
-                    <!-- 下一页按钮 -->
-                    {% if paginate.next %}
-                      <li>
-                        <a
-                          href="{{ paginate.next.url }}"
-                          class="pagination__item pagination__item--next px-15 py-10 bg-gray-100 hover:bg-gray-200 rounded text-16"
-                          aria-label="{{ 'general.pagination.next' | t | default: 'Next page' }}"
-                        >
-                          Next ›
-                        </a>
-                      </li>
-                    {% else %}
-                      <li>
-                        <span
-                          class="pagination__item pagination__item--next px-15 py-10 bg-gray-100 text-gray-400 rounded text-16"
-                          aria-disabled="true"
-                        >
-                          Next ›
-                        </span>
-                      </li>
-                    {% endif %}
-                  </ol>
-                </nav>
-              {% endif %}
+              {% render 'pagination', paginate: paginate %}
             </div>
           {% endpaginate %}
         </div>
