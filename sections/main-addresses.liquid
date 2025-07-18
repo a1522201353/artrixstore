@@ -193,46 +193,183 @@
                       </div>
 
                       <div class="address-actions flex gap-10 items-center mt-20 justify-between">
-                        <a href="{{ routes.account_addresses_url }}/{{ address.id }}" class="btn-edit text-blue text-20 flex items-center gap-5">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                              <path d="m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            Edit
-                          </a>
+                        <a
+                          href="#"
+                          class="btn-edit"
+                          data-edit-address
+                          data-target="#edit-form-{{ address.id }}"
+                          data-address-id="{{ address.id }}"
+                        >
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="m18.5 2.5 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          Edit
+                        </a>
 
-                          {% unless address == customer.default_address %}
-                            <!-- Delete Button -->
-                            <form method="post" action="/account/addresses/{{ address.id }}" class="inline-flex">
-                              <input type="hidden" name="form_type" value="customer_address" />
-                              <input type="hidden" name="utf8" value="✓" />
-                              <input type="hidden" name="_method" value="delete" />
-                              <button type="submit" class="btn-delete text-red text-20 flex items-center gap-5" onclick="return confirm('Are you sure you want to delete this address?')">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M3 6h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  <line x1="10" y1="11" x2="10" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  <line x1="14" y1="11" x2="14" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                Delete
-                              </button>
-                            </form>
-                        
-                            <!-- Set as Default Button -->
-                            {% form 'customer_address', address, class: 'inline-flex' %}
-                              <input type="hidden" name="address[default]" value="1">
-                              <button type="submit" class="btn-default text-green text-20 flex items-center gap-5">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  <path d="M21 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  <path d="M3 12c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  <path d="M12 3c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  <path d="M12 21c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                                Set as Default
-                              </button>
-                            {% endform %}
-                          {% endunless %}
+                        {% unless address == customer.default_address %}
+                          <!-- Delete Button -->
+                          <form method="post" action="/account/addresses/{{ address.id }}" class="inline-flex">
+                            <input type="hidden" name="form_type" value="customer_address">
+                            <input type="hidden" name="utf8" value="✓">
+                            <input type="hidden" name="_method" value="delete">
+                            <button
+                              type="submit"
+                              class="btn-delete text-red text-20 flex items-center gap-5"
+                              onclick="return confirm('Are you sure you want to delete this address?')"
+                            >
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path d="M3 6h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="10" y1="11" x2="10" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="14" y1="11" x2="14" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                              Delete
+                            </button>
+                          </form>
+
+                          <!-- Set as Default Button -->
+                          {% form 'customer_address', address, class: 'inline-flex' %}
+                            <input type="hidden" name="address[default]" value="1">
+                            <button type="submit" class="btn-default text-green text-20 flex items-center gap-5">
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M21 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M3 12c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 3c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 21c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                              Set as Default
+                            </button>
+                          {% endform %}
+                        {% endunless %}
+                      </div>
+
+                      <div class="edit-form-container" id="edit-form-{{ address.id }}" style="display: none;">
+                        {% form 'customer_address', address, class: 'edit-address-form' %}
+                          <div class="form-grid grid grid-cols-2 gap-20">
+                            <div class="form-group">
+                              <label for="EditAddressFirstName_{{ address.id }}">First Name *</label>
+                              <input
+                                type="text"
+                                id="EditAddressFirstName_{{ address.id }}"
+                                name="address[first_name]"
+                                value="{{ address.first_name }}"
+                                required
+                              >
+                            </div>
+                            <div class="form-group">
+                              <label for="EditAddressLastName_{{ address.id }}">Last Name *</label>
+                              <input
+                                type="text"
+                                id="EditAddressLastName_{{ address.id }}"
+                                name="address[last_name]"
+                                value="{{ address.last_name }}"
+                                required
+                              >
+                            </div>
+                            <div class="form-group">
+                              <label for="EditAddressCompany_{{ address.id }}">Company</label>
+                              <input
+                                type="text"
+                                id="EditAddressCompany_{{ address.id }}"
+                                name="address[company]"
+                                value="{{ address.company }}"
+                              >
+                            </div>
+                            <div class="form-group">
+                              <label for="EditAddressPhone_{{ address.id }}">Phone</label>
+                              <input
+                                type="tel"
+                                id="EditAddressPhone_{{ address.id }}"
+                                name="address[phone]"
+                                value="{{ address.phone }}"
+                              >
+                            </div>
+                            <div class="form-group full-width">
+                              <label for="EditAddressAddress1_{{ address.id }}">Address *</label>
+                              <input
+                                type="text"
+                                id="EditAddressAddress1_{{ address.id }}"
+                                name="address[address1]"
+                                value="{{ address.address1 }}"
+                                required
+                              >
+                            </div>
+                            <div class="form-group full-width">
+                              <label for="EditAddressAddress2_{{ address.id }}">Apartment, suite, etc.</label>
+                              <input
+                                type="text"
+                                id="EditAddressAddress2_{{ address.id }}"
+                                name="address[address2]"
+                                value="{{ address.address2 }}"
+                              >
+                            </div>
+                            <div class="form-group">
+                              <label for="EditAddressCity_{{ address.id }}">City *</label>
+                              <input
+                                type="text"
+                                id="EditAddressCity_{{ address.id }}"
+                                name="address[city]"
+                                value="{{ address.city }}"
+                                required
+                              >
+                            </div>
+                            <div class="form-group">
+                              <label for="EditAddressCountry_{{ address.id }}">Country *</label>
+                              <select
+                                id="EditAddressCountry_{{ address.id }}"
+                                name="address[country]"
+                                data-default="{{ address.country }}"
+                                required
+                              >
+                                {{ all_country_option_tags }}
+                              </select>
+                            </div>
+                            <div class="form-group" id="EditAddressProvinceContainer_{{ address.id }}">
+                              <label for="EditAddressProvince_{{ address.id }}">Province/State</label>
+                              <select
+                                id="EditAddressProvince_{{ address.id }}"
+                                name="address[province]"
+                                data-default="{{ address.province }}"
+                              >
+                                <option value="">Select Province/State</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label for="EditAddressZip_{{ address.id }}">Postal/Zip Code *</label>
+                              <input
+                                type="text"
+                                id="EditAddressZip_{{ address.id }}"
+                                name="address[zip]"
+                                value="{{ address.zip }}"
+                                required
+                              >
+                            </div>
+                          </div>
+                          <div class="form-actions flex gap-20 mt-20">
+                            <button type="submit" class="btn-save learn-more inline-block text-20 bg-red text-white">Update Address</button>
+                            <button type="button" class="btn-cancel" data-cancel-edit>Cancel</button>
+                          </div>
+                        {% endform %}
                       </div>
                     </div>
                   {% endfor %}
@@ -328,8 +465,6 @@
     font-weight: 500;
   }
 
-  
-
   .btn-edit,
   .btn-delete,
   .btn-default {
@@ -386,7 +521,7 @@
       align-items: stretch;
       gap: 8px;
     }
-    
+
     .btn-edit,
     .btn-delete,
     .btn-default {
