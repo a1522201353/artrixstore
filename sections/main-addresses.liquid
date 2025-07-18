@@ -158,72 +158,157 @@
           </div>
 
           <!-- Existing Addresses -->
-          <div class="addresses-list">
-            {% if customer.addresses.size > 0 %}
-              <div class="addresses-grid grid grid-cols-1 md:grid-cols-2 gap-20 bg-lightgray">
-                {% for address in customer.addresses %}
-                  <div class="address-card bg-gray-50 p-20 rounded border">
-                    {% if address == customer.default_address %}
-                      <div class="default-badge bg-green text-white px-10 py-5 rounded text-12 mb-10 inline-block">
-                        Default Address
+          {% paginate customer.addresses by 5 %}
+            <div class="addresses-list">
+              {% if customer.addresses.size > 0 %}
+                <div class="addresses-grid grid grid-cols-1 md:grid-cols-2 gap-20 bg-lightgray">
+                  {% for address in customer.addresses %}
+                    <div class="address-card bg-gray-50 p-20 rounded border">
+                      {% if address == customer.default_address %}
+                        <div class="default-badge bg-green text-white px-10 py-5 rounded text-18 mb-10 inline-block">
+                          Default Address
+                        </div>
+                      {% endif %}
+
+                      <div class="address-info flex flex-col gap-10">
+                        <div class="name font-600 text-24 mb-5">
+                          {{ address.first_name }}
+                          {{ address.last_name }}
+                        </div>
+                        {% if address.company != blank %}
+                          <div class="company text-20 mb-5">{{ address.company }}</div>
+                        {% endif %}
+                        <div class="address text-20 mb-5">{{ address.address1 }}</div>
+                        {% if address.address2 != blank %}
+                          <div class="address2 text-20 mb-5">{{ address.address2 }}</div>
+                        {% endif %}
+                        <div class="city-info text-20 mb-5">
+                          {{ address.city }}, {{ address.province }}
+                          {{ address.zip }}
+                        </div>
+                        <div class="country text-20 mb-5">{{ address.country }}</div>
+                        {% if address.phone != blank %}
+                          <div class="phone text-20 mb-10">{{ address.phone }}</div>
+                        {% endif %}
                       </div>
+
+                      <div class="address-actions flex gap-10 items-center mt-20">
+                        <a href="{{ routes.account_addresses_url }}/{{ address.id }}" class="btn-edit text-blue text-20"
+                          >Edit</a
+                        >
+
+                        {% unless address == customer.default_address %}
+                          {% form 'customer_address', address %}
+                            <button
+                              type="submit"
+                              name="_method"
+                              value="delete"
+                              class="btn-delete text-red text-20"
+                              onclick="return confirm('Are you sure you want to delete this address?')"
+                            >
+                              Delete
+                            </button>
+                          {% endform %}
+                        {% endunless %}
+
+                        {% unless address == customer.default_address %}
+                          {% form 'customer_address', address %}
+                            <input type="hidden" name="address[default]" value="1">
+                            <button type="submit" class="btn-default text-green text-20">Set as Default</button>
+                          {% endform %}
+                        {% endunless %}
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% else %}
+                <div class="no-addresses text-center py-40">
+                  <p class="text-18 mb-20">You haven't added any addresses yet.</p>
+                  <button class="bg-red text-white px-30 py-15 rounded">Add Your First Address</button>
+                </div>
+              {% endif %}
+
+              {% if paginate.pages > 1 %}
+                <nav class="pagination mt-40" role="navigation" aria-label="Pagination">
+                  <ol class="pagination__list flex justify-center items-center gap-10" role="list">
+                    <!-- 上一页按钮 -->
+                    {% if paginate.previous %}
+                      <li>
+                        <a
+                          href="{{ paginate.previous.url }}"
+                          class="pagination__item pagination__item--prev px-15 py-10 bg-gray-100 hover:bg-gray-200 rounded text-16"
+                          aria-label="{{ 'general.pagination.previous' | t | default: 'Previous page' }}"
+                        >
+                          ‹ Previous
+                        </a>
+                      </li>
+                    {% else %}
+                      <li>
+                        <span
+                          class="pagination__item pagination__item--prev px-15 py-10 bg-gray-100 text-gray-400 rounded text-16"
+                          aria-disabled="true"
+                        >
+                          ‹ Previous
+                        </span>
+                      </li>
                     {% endif %}
 
-                    <div class="address-info">
-                      <div class="name font-600 text-16 mb-5">
-                        {{ address.first_name }}
-                        {{ address.last_name }}
-                      </div>
-                      {% if address.company != blank %}
-                        <div class="company text-14 mb-5">{{ address.company }}</div>
-                      {% endif %}
-                      <div class="address text-14 mb-5">{{ address.address1 }}</div>
-                      {% if address.address2 != blank %}
-                        <div class="address2 text-14 mb-5">{{ address.address2 }}</div>
-                      {% endif %}
-                      <div class="city-info text-14 mb-5">
-                        {{ address.city }}, {{ address.province }}
-                        {{ address.zip }}
-                      </div>
-                      <div class="country text-14 mb-5">{{ address.country }}</div>
-                      {% if address.phone != blank %}
-                        <div class="phone text-14 mb-10">{{ address.phone }}</div>
-                      {% endif %}
-                    </div>
-
-                    <div class="address-actions flex gap-10">
-                      <a href="{{ routes.account_addresses_url }}/{{ address.id }}" class="btn-edit text-blue text-14"
-                        >Edit</a
-                      >
-                      {% unless address == customer.default_address %}
-                        {% form 'customer_address', address %}
-                          <button
-                            type="submit"
-                            name="_method"
-                            value="delete"
-                            class="btn-delete text-red text-14"
-                            onclick="return confirm('Are you sure you want to delete this address?')"
+                    <!-- 页码按钮 -->
+                    {% assign current_page_str = paginate.current_page | append: '' %}
+                    {% for part in paginate.parts %}
+                      <li>
+                        {% if part.is_link %}
+                          <a
+                            href="{{ part.url }}"
+                            class="pagination__item px-15 py-10 bg-gray-100 hover:bg-blue-500 hover:text-white rounded text-16"
+                            aria-label="{{ 'general.pagination.page' | t: number: part.title | default: 'Page' }} {{ part.title }}"
                           >
-                            Delete
-                          </button>
-                        {% endform %}
-                      {% endunless %}
-                      {% unless address == customer.default_address %}
-                        <form action="{{ routes.account_addresses_url }}/{{ address.id }}/set_default" method="post">
-                          <button type="submit" class="btn-default text-green text-14">Set as Default</button>
-                        </form>
-                      {% endunless %}
-                    </div>
-                  </div>
-                {% endfor %}
-              </div>
-            {% else %}
-              <div class="no-addresses text-center py-40">
-                <p class="text-18 mb-20">You haven't added any addresses yet.</p>
-                <button class="bg-red text-white px-30 py-15 rounded">Add Your First Address</button>
-              </div>
-            {% endif %}
-          </div>
+                            {{ part.title }}
+                          </a>
+                        {% else %}
+                          {% if part.title == current_page_str %}
+                            <span
+                              class="pagination__item pagination__item--current px-15 py-10 bg-blue-500 text-white rounded text-16"
+                              aria-current="page"
+                              aria-label="{{ 'general.pagination.page' | t: number: part.title | default: 'Page' }} {{ part.title }}"
+                            >
+                              {{ part.title }}
+                            </span>
+                          {% else %}
+                            <span class="pagination__item px-15 py-10 text-gray-400 rounded text-16">
+                              {{ part.title }}
+                            </span>
+                          {% endif %}
+                        {% endif %}
+                      </li>
+                    {% endfor %}
+
+                    <!-- 下一页按钮 -->
+                    {% if paginate.next %}
+                      <li>
+                        <a
+                          href="{{ paginate.next.url }}"
+                          class="pagination__item pagination__item--next px-15 py-10 bg-gray-100 hover:bg-gray-200 rounded text-16"
+                          aria-label="{{ 'general.pagination.next' | t | default: 'Next page' }}"
+                        >
+                          Next ›
+                        </a>
+                      </li>
+                    {% else %}
+                      <li>
+                        <span
+                          class="pagination__item pagination__item--next px-15 py-10 bg-gray-100 text-gray-400 rounded text-16"
+                          aria-disabled="true"
+                        >
+                          Next ›
+                        </span>
+                      </li>
+                    {% endif %}
+                  </ol>
+                </nav>
+              {% endif %}
+            </div>
+          {% endpaginate %}
         </div>
       </div>
     </div>
@@ -303,7 +388,6 @@
     color: white;
     padding: 4px 8px;
     border-radius: 12px;
-    font-size: 12px;
     font-weight: 500;
   }
   @media (max-width: 768px) {
