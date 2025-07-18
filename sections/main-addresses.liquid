@@ -192,7 +192,7 @@
                         {% endif %}
                       </div>
 
-                      <div class="address-actions flex gap-10 items-center mt-20">
+                      <div class="address-actions flex gap-10 items-center mt-20 justify-between">
                         <a href="{{ routes.account_addresses_url }}/{{ address.id }}" class="btn-edit text-blue text-20 flex items-center gap-5">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -303,11 +303,11 @@
     cursor: pointer;
   }
   .btn-edit {
-    color: #2563eb;
+    color: black;
     text-decoration: none;
   }
   .btn-delete {
-    color: #dc2626;
+    color: red;
     background: none;
     border: none;
     cursor: pointer;
@@ -327,6 +327,74 @@
     border-radius: 12px;
     font-weight: 500;
   }
+
+  
+
+  .btn-edit,
+  .btn-delete,
+  .btn-default {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .btn-edit {
+    color: #2563eb;
+  }
+
+  .btn-edit:hover {
+    background-color: rgba(37, 99, 235, 0.1);
+    color: #1d4ed8;
+  }
+
+  .btn-delete {
+    color: #dc2626;
+  }
+
+  .btn-delete:hover {
+    background-color: rgba(220, 38, 38, 0.1);
+    color: #b91c1c;
+  }
+
+  .btn-default {
+    color: #059669;
+  }
+
+  .btn-default:hover {
+    background-color: rgba(5, 150, 105, 0.1);
+    color: #047857;
+  }
+
+  .btn-edit svg,
+  .btn-delete svg,
+  .btn-default svg {
+    flex-shrink: 0;
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .address-actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+    }
+    
+    .btn-edit,
+    .btn-delete,
+    .btn-default {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
   @media (max-width: 768px) {
     .form-grid {
       grid-template-columns: 1fr;
